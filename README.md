@@ -47,9 +47,9 @@ npm install
 
 ```json
 {
-  "serverHost": "yourserver.aternos.me",
-  "serverPort": 25565,
-  "botUsername": "MyBotName",
+  "serverHost": "PORTALMCPE.aternos.me",
+  "serverPort": ,52437
+  "botUsername": "afk bot ",
   "botChunk": 4
 }
 ```
