@@ -1,3 +1,4 @@
+
 <!-- Last updated: 2025-08-21T17:25:27Z -->
 # 🤖 Minecraft AFK Bot (Mineflayer-Based)
 
