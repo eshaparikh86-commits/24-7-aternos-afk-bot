@@ -47,9 +47,9 @@ npm install
 
 ```json
 {
-  "serverHost": "yourserver.aternos.me",
-  "serverPort": 25565,
-  "botUsername": "MyBotName",
+  "serverHost":goku789v-P5IB.aternos.me ".aternos.me",
+  "serverPort": 49036,
+  "botUsername": "minecraft bot for24/7",
   "botChunk": 4
 }
 ```
