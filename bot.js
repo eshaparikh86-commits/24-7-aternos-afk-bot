@@ -1,6 +1,8 @@
 const mineflayer = require('mineflayer');
 const config = require('./config.json');
 
+const PASSWORD = "YourPassword123"; // Change this
+
 const bot = mineflayer.createBot({
   host: config.serverHost,
   port: config.serverPort,
@@ -12,7 +14,6 @@ const bot = mineflayer.createBot({
 
 let movementPhase = 0;
 const STEP_INTERVAL = 1500;
-const STEP_SPEED    = 1;
 const JUMP_DURATION = 500;
 
 bot.on('spawn', () => {
@@ -24,6 +25,21 @@ bot.on('spawn', () => {
   setTimeout(movementCycle, STEP_INTERVAL);
 });
 
+// Auto Register/Login
+bot.on('messagestr', (message) => {
+  const msg = message.toLowerCase();
+
+  if (msg.includes('/register')) {
+    console.log('Registering...');
+    bot.chat(`/register ${PASSWORD} ${PASSWORD}`);
+  }
+
+  if (msg.includes('/login')) {
+    console.log('Logging in...');
+    bot.chat(`/login ${PASSWORD}`);
+  }
+});
+
 function movementCycle() {
   if (!bot.entity) return;
 
@@ -33,19 +49,23 @@ function movementCycle() {
       bot.setControlState('back', false);
       bot.setControlState('jump', false);
       break;
+
     case 1:
       bot.setControlState('forward', false);
       bot.setControlState('back', true);
       bot.setControlState('jump', false);
       break;
+
     case 2:
       bot.setControlState('forward', false);
       bot.setControlState('back', false);
       bot.setControlState('jump', true);
+
       setTimeout(() => {
         bot.setControlState('jump', false);
       }, JUMP_DURATION);
       break;
+
     case 3:
       bot.setControlState('forward', false);
       bot.setControlState('back', false);
@@ -61,6 +81,7 @@ function movementCycle() {
 bot.on('error', (err) => {
   console.error('⚠️ Error:', err);
 });
+
 bot.on('end', () => {
   console.log('⛔️ Bot Disconnected!');
 });
